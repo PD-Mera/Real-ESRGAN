@@ -283,7 +283,8 @@ class PreloadTorchRealESRGANer():
                  tile=0,
                  tile_pad=10,
                  pre_pad=10,
-                 half=False):
+                 half=False,
+                 device=None):
         self.scale = scale
         self.tile_size = tile
         self.tile_pad = tile_pad
@@ -292,7 +293,9 @@ class PreloadTorchRealESRGANer():
         self.half = half
 
         model.eval()
-        self.model = model.to(self.device)
+        self.model = model
+        self.device = device
+
         if self.half:
             self.model = self.model.half()
 
