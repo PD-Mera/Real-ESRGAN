@@ -29,5 +29,9 @@ RUN wget https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0/RealESR
 
 RUN pip uninstall opencv-python -y
 RUN pip install opencv-python-headless
+RUN git pull
+RUN git pull
+
+ENV CUDA_VISIBLE_DEVICES=4
 
 ENTRYPOINT ["python", "api_realesrgan.py"]

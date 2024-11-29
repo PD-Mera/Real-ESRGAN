@@ -105,6 +105,7 @@ class ProcessManager:
         self.p.start()
         self.p.join()
 
+        results = "-1"
         while not self.result_queue.empty():
             results = self.result_queue.get()
 
@@ -141,6 +142,9 @@ async def general_image_restoration(file: UploadFile = File(...)):
             "msg": "Success",
             "results": 'data:image/jpg;base64,' + jpg_as_text.decode('utf-8')
         }
+
+        print(len(response["results"]))
+
     except Exception as e:
         response = {
             "is_success": False,
